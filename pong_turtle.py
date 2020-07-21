@@ -41,8 +41,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.5
-ball.dy = 0.5
+ball.dx = 0.25
+ball.dy = 0.25
 
 # Pen
 pen = turtle.Turtle()
@@ -52,27 +52,35 @@ pen.color("white")
 pen.penup()
 pen.hideturtle()
 pen.goto(0, 260)
-pen.write("Player A: 0  Player B: 0", align="center", font=("Courier", 24, "normal"))
+pen.write("0 | 0", align="center", font=("Courier", 24, "normal"))
+for i in range(260, -301, -40):
+    pen.goto(0, i)
+    pen.write("|", align="center", font=("Courier", 24, "normal"))
+pen.goto(0, 260)
 
 # Functions
 def paddle_a_up():
     y = paddle_a.ycor()
-    y += 20
+    if y < 250:
+        y += 20
     paddle_a.sety(y)
 
 def paddle_a_down():
     y = paddle_a.ycor()
-    y -= 20
+    if y > -250:
+        y -= 20
     paddle_a.sety(y)
 
 def paddle_b_up():
     y = paddle_b.ycor()
-    y += 20
+    if y < 250:
+        y += 20
     paddle_b.sety(y)
 
 def paddle_b_down():
     y = paddle_b.ycor()
-    y -= 20
+    if y > -250:
+        y -= 20
     paddle_b.sety(y)
 
 # Keyboard bindings
@@ -102,17 +110,25 @@ while True:
         ball.dy *= -1
 
     # Left and right
-    if ball.xcor() > 350:
+    if ball.xcor() > 380:
         score_a += 1
         pen.clear()
-        pen.write(f"Player A: {score_a}  Player B: {score_b}", align="center", font=("Courier", 24, "normal"))
+        pen.write(f"{score_a} | {score_b}", align="center", font=("Courier", 24, "normal"))
+        for i in range(260, -301, -40):
+            pen.goto(0, i)
+            pen.write("|", align="center", font=("Courier", 24, "normal"))
+        pen.goto(0, 260)
         ball.goto(0, 0)
         ball.dx *= -1
 
-    elif ball.xcor() < -350:
+    elif ball.xcor() < -380:
         score_b += 1
         pen.clear()
-        pen.write(f"Player A: {score_a}  Player B: {score_b}", align="center", font=("Courier", 24, "normal"))
+        pen.write(f"{score_a} | {score_b}", align="center", font=("Courier", 24, "normal"))
+        for i in range(260, -301, -40):
+            pen.goto(0, i)
+            pen.write("|", align="center", font=("Courier", 24, "normal"))
+        pen.goto(0, 260)
         ball.goto(0, 0)
         ball.dx *= -1
 
