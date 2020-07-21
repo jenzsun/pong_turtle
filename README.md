@@ -1,2 +1,2 @@
 # pong_turtle
-Python 3 Pong game coded with Turtle
+Very basic Python 3 Pong game using turtle module
